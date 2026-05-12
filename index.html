@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Larq Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <h1>Larq Dashboard</h1>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#productions">Productions</a>
+          <a href="#placements">Placements</a>
+          <a href="#brands">Brands</a>
+          <a href="#notes">Notes</a>
+          <a href="#reporting">Reporting</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="top-bar">
+          <div>
+            <h2 id="overview">Agency Performance</h2>
+            <p>UK film & television product placement operations dashboard.</p>
+          </div>
+          <label class="search-wrap" for="searchInput">
+            <span class="visually-hidden">Search productions and brands</span>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search productions or brands..."
+              aria-label="Search productions and brands"
+            />
+          </label>
+        </header>
+
+        <section class="summary-cards" aria-label="Dashboard summary cards">
+          <article class="card">
+            <h3>Productions</h3>
+            <p class="metric" id="productionCount">0</p>
+          </article>
+          <article class="card">
+            <h3>Placements</h3>
+            <p class="metric" id="placementCount">0</p>
+          </article>
+          <article class="card">
+            <h3>Brands</h3>
+            <p class="metric" id="brandCount">0</p>
+          </article>
+          <article class="card">
+            <h3>Reporting Progress</h3>
+            <p class="metric" id="reportProgress">0%</p>
+          </article>
+        </section>
+
+        <section class="panel" id="placements">
+          <div class="panel-head">
+            <h3>Placement Status Tracking</h3>
+            <span class="badge">Live Progress</span>
+          </div>
+          <ul id="placementList" class="status-list"></ul>
+        </section>
+
+        <section class="grid-panels">
+          <section class="panel" id="productions">
+            <h3>Productions</h3>
+            <ul id="productionList"></ul>
+          </section>
+
+          <section class="panel" id="brands">
+            <h3>Brands</h3>
+            <ul id="brandList"></ul>
+          </section>
+
+          <section class="panel" id="notes">
+            <h3>Notes</h3>
+            <ul>
+              <li>Confirm final contracts for Spring drama placements.</li>
+              <li>Schedule quarterly update calls with key brand clients.</li>
+              <li>Prioritise reports with release dates within 30 days.</li>
+            </ul>
+          </section>
+
+          <section class="panel" id="reporting">
+            <h3>Reporting Progress</h3>
+            <p>Overall campaign reporting completion: <strong id="reportingDetail">0%</strong></p>
+            <div class="progress-track" role="img" aria-label="Reporting progress indicator">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
