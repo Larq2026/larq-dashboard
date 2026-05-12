@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Larq Production Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Larq Dashboard</h1>
+      <p>Track productions, placements, brands, notes, and reporting progress.</p>
+    </header>
+
+    <div class="app-shell">
+      <nav class="sidebar" aria-label="Primary navigation">
+        <button class="nav-link active" data-target="overview">Overview</button>
+        <button class="nav-link" data-target="productions">Productions</button>
+        <button class="nav-link" data-target="placements">Placements</button>
+        <button class="nav-link" data-target="brands">Brands</button>
+        <button class="nav-link" data-target="notes">Notes</button>
+        <button class="nav-link" data-target="reporting">Reporting</button>
+      </nav>
+
+      <main class="content">
+        <section id="overview" class="panel active" aria-labelledby="overview-title">
+          <h2 id="overview-title">Overview</h2>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <h3>Active Productions</h3>
+              <p class="big-number">12</p>
+            </article>
+            <article class="stat-card">
+              <h3>Total Placements</h3>
+              <p class="big-number">48</p>
+            </article>
+            <article class="stat-card">
+              <h3>Brand Partners</h3>
+              <p class="big-number">9</p>
+            </article>
+            <article class="stat-card">
+              <h3>Reporting Completion</h3>
+              <p class="big-number">72%</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="productions" class="panel" aria-labelledby="productions-title">
+          <h2 id="productions-title">Productions</h2>
+          <ul class="list">
+            <li>Spring Campaign — In Production — Owner: Mia</li>
+            <li>Summer Launch — Review — Owner: Alex</li>
+            <li>Holiday Preview — Planned — Owner: Devon</li>
+          </ul>
+        </section>
+
+        <section id="placements" class="panel" aria-labelledby="placements-title">
+          <h2 id="placements-title">Placements</h2>
+          <ul class="list">
+            <li>Homepage Hero — Approved</li>
+            <li>Retail Shelf Card — In Revision</li>
+            <li>Influencer Kit — Sent</li>
+          </ul>
+        </section>
+
+        <section id="brands" class="panel" aria-labelledby="brands-title">
+          <h2 id="brands-title">Brands</h2>
+          <ul class="list">
+            <li>Larq Core — 4 Campaigns</li>
+            <li>Larq PureVis — 3 Campaigns</li>
+            <li>Larq Bottle — 5 Campaigns</li>
+          </ul>
+        </section>
+
+        <section id="notes" class="panel" aria-labelledby="notes-title">
+          <h2 id="notes-title">Notes</h2>
+          <ul class="list">
+            <li>Confirm legal copy for Q3 campaigns by Friday.</li>
+            <li>Coordinate final product renders with design team.</li>
+            <li>Collect partner feedback for post-campaign report.</li>
+          </ul>
+        </section>
+
+        <section id="reporting" class="panel" aria-labelledby="reporting-title">
+          <h2 id="reporting-title">Reporting Progress</h2>
+          <label for="progress">Monthly report completion</label>
+          <progress id="progress" value="72" max="100">72%</progress>
+          <p class="muted">72% complete • 3 sections pending approvals</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
