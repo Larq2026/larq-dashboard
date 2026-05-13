@@ -3,93 +3,239 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Larq Production Dashboard</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Larq Dashboard | Client Production & Reporting</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --surface: #ffffff;
+        --surface-alt: #f8fafc;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --border: #d9e1ec;
+        --brand: #0f766e;
+        --brand-soft: #d9f3ef;
+        --accent: #2563eb;
+        --ok: #166534;
+        --warn: #92400e;
+        --alert: #9f1239;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.45;
+      }
+
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      header {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      h1 { margin: 0 0 0.25rem; font-size: 1.6rem; }
+      .sub { margin: 0; color: var(--muted); }
+      .meta { margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem;
+      }
+
+      .card h2 {
+        margin: 0 0 0.8rem;
+        font-size: 1.05rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.5rem;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+      .pill.ok { background: #dcfce7; color: var(--ok); }
+      .pill.warn { background: #fef3c7; color: var(--warn); }
+      .pill.alert { background: #ffe4e6; color: var(--alert); }
+      .pill.info { background: #dbeafe; color: #1d4ed8; }
+
+      ul { margin: 0; padding-left: 1rem; }
+      li + li { margin-top: 0.45rem; }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.92rem;
+      }
+      th, td {
+        border: 1px solid var(--border);
+        padding: 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: var(--surface-alt);
+        font-weight: 600;
+      }
+
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+      .kpi {
+        background: var(--surface-alt);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.6rem;
+      }
+      .kpi .num { font-size: 1.2rem; font-weight: 700; }
+      .kpi .lbl { color: var(--muted); font-size: 0.84rem; }
+
+      progress {
+        width: 100%;
+        height: 0.9rem;
+      }
+
+      @media (max-width: 640px) {
+        .kpis { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
   <body>
-    <header class="topbar">
-      <h1>Larq Dashboard</h1>
-      <p>Track productions, placements, brands, notes, and reporting progress.</p>
-    </header>
+    <div class="wrap">
+      <header>
+        <h1>Larq Production & Exposure Dashboard</h1>
+        <p class="sub">Operational snapshot across retained clients and active product placement activity.</p>
+        <p class="meta" id="last-updated">Updated: </p>
+      </header>
 
-    <div class="app-shell">
-      <nav class="sidebar" aria-label="Primary navigation">
-        <button class="nav-link active" data-target="overview">Overview</button>
-        <button class="nav-link" data-target="productions">Productions</button>
-        <button class="nav-link" data-target="placements">Placements</button>
-        <button class="nav-link" data-target="brands">Brands</button>
-        <button class="nav-link" data-target="notes">Notes</button>
-        <button class="nav-link" data-target="reporting">Reporting</button>
-      </nav>
+      <main class="grid" aria-label="Larq dashboard sections">
+        <section class="card" aria-labelledby="retained-brands">
+          <h2 id="retained-brands">1) Active retained brands</h2>
+          <ul>
+            <li><strong>Rentokil Initial</strong> — UK/Ireland retained programme <span class="pill ok">On Track</span></li>
+            <li><strong>Tetrosyl</strong> — Car care product placement cycle <span class="pill ok">Active</span></li>
+            <li><strong>Tunnocks</strong> — Broadcast visibility and seasonal activations <span class="pill info">Campaign Live</span></li>
+            <li>Additional retained accounts: 5 (FMCG, household, automotive)</li>
+          </ul>
+        </section>
 
-      <main class="content">
-        <section id="overview" class="panel active" aria-labelledby="overview-title">
-          <h2 id="overview-title">Overview</h2>
-          <div class="stats-grid">
-            <article class="stat-card">
-              <h3>Active Productions</h3>
-              <p class="big-number">12</p>
-            </article>
-            <article class="stat-card">
-              <h3>Total Placements</h3>
-              <p class="big-number">48</p>
-            </article>
-            <article class="stat-card">
-              <h3>Brand Partners</h3>
-              <p class="big-number">9</p>
-            </article>
-            <article class="stat-card">
-              <h3>Reporting Completion</h3>
-              <p class="big-number">72%</p>
-            </article>
+        <section class="card" aria-labelledby="current-productions">
+          <h2 id="current-productions">2) Current productions being tracked</h2>
+          <table>
+            <thead><tr><th>Production</th><th>Client</th><th>Stage</th><th>ETA</th></tr></thead>
+            <tbody>
+              <tr><td>Saturday Family Hour (S3)</td><td>Tunnocks</td><td>In edit</td><td>24 May 2026</td></tr>
+              <tr><td>DriveTime Garage Stories</td><td>Tetrosyl</td><td>Props confirmed</td><td>31 May 2026</td></tr>
+              <tr><td>Workplace Reset UK</td><td>Rentokil Initial</td><td>Filming week 2</td><td>05 Jun 2026</td></tr>
+              <tr><td>Prime Chef Challenge</td><td>Multi-client</td><td>Placement negotiations</td><td>12 Jun 2026</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card" aria-labelledby="product-requests">
+          <h2 id="product-requests">3) Product requests by production</h2>
+          <table>
+            <thead><tr><th>Production</th><th>Request Volume</th><th>Top Requested Items</th></tr></thead>
+            <tbody>
+              <tr><td>Workplace Reset UK</td><td>14 units</td><td>Sanitiser dispensers, hygiene stations</td></tr>
+              <tr><td>DriveTime Garage Stories</td><td>11 units</td><td>Car care kits, degreaser packs</td></tr>
+              <tr><td>Saturday Family Hour (S3)</td><td>8 units</td><td>Biscuit multipacks, branded hampers</td></tr>
+              <tr><td>Prime Chef Challenge</td><td>6 units</td><td>Kitchen surface hygiene products</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card" aria-labelledby="dispatches-returns">
+          <h2 id="dispatches-returns">4) Pending dispatches and returns</h2>
+          <div class="kpis" aria-label="Dispatch summary">
+            <div class="kpi"><div class="num">9</div><div class="lbl">Pending dispatches</div></div>
+            <div class="kpi"><div class="num">4</div><div class="lbl">Returns awaiting collection</div></div>
+            <div class="kpi"><div class="num">2</div><div class="lbl">Overdue returns</div></div>
           </div>
-        </section>
-
-        <section id="productions" class="panel" aria-labelledby="productions-title">
-          <h2 id="productions-title">Productions</h2>
-          <ul class="list">
-            <li>Spring Campaign — In Production — Owner: Mia</li>
-            <li>Summer Launch — Review — Owner: Alex</li>
-            <li>Holiday Preview — Planned — Owner: Devon</li>
+          <ul style="margin-top: 0.75rem;">
+            <li>Tetrosyl return crate RT-224 is 3 days overdue <span class="pill alert">Action Needed</span></li>
+            <li>Rentokil Initial dispatch batch RI-118 booked with carrier for 14 May 2026</li>
           </ul>
         </section>
 
-        <section id="placements" class="panel" aria-labelledby="placements-title">
-          <h2 id="placements-title">Placements</h2>
-          <ul class="list">
-            <li>Homepage Hero — Approved</li>
-            <li>Retail Shelf Card — In Revision</li>
-            <li>Influencer Kit — Sent</li>
-          </ul>
+        <section class="card" aria-labelledby="exposure-reports">
+          <h2 id="exposure-reports">5) Broadcast exposure reports</h2>
+          <table>
+            <thead><tr><th>Client</th><th>Airtime Mentions</th><th>Visual Exposure</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Tunnocks</td><td>3 verbal mentions</td><td>5m 42s</td><td><span class="pill ok">Verified</span></td></tr>
+              <tr><td>Tetrosyl</td><td>1 verbal mention</td><td>4m 15s</td><td><span class="pill warn">Awaiting final cut</span></td></tr>
+              <tr><td>Rentokil Initial</td><td>2 verbal mentions</td><td>6m 03s</td><td><span class="pill ok">Verified</span></td></tr>
+            </tbody>
+          </table>
         </section>
 
-        <section id="brands" class="panel" aria-labelledby="brands-title">
-          <h2 id="brands-title">Brands</h2>
-          <ul class="list">
-            <li>Larq Core — 4 Campaigns</li>
-            <li>Larq PureVis — 3 Campaigns</li>
-            <li>Larq Bottle — 5 Campaigns</li>
-          </ul>
+        <section class="card" aria-labelledby="media-value">
+          <h2 id="media-value">6) Monthly calculated media value</h2>
+          <table>
+            <thead><tr><th>Client</th><th>May 2026 Value</th><th>Change vs Apr 2026</th></tr></thead>
+            <tbody>
+              <tr><td>Rentokil Initial</td><td>£184,000</td><td>+12%</td></tr>
+              <tr><td>Tetrosyl</td><td>£126,500</td><td>+4%</td></tr>
+              <tr><td>Tunnocks</td><td>£143,200</td><td>+9%</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Total projected monthly value:</strong> £453,700</p>
         </section>
 
-        <section id="notes" class="panel" aria-labelledby="notes-title">
-          <h2 id="notes-title">Notes</h2>
-          <ul class="list">
-            <li>Confirm legal copy for Q3 campaigns by Friday.</li>
-            <li>Coordinate final product renders with design team.</li>
-            <li>Collect partner feedback for post-campaign report.</li>
-          </ul>
+        <section class="card" aria-labelledby="client-reporting">
+          <h2 id="client-reporting">7) Client reporting status</h2>
+          <p><strong>Rentokil Initial</strong> — Draft shared, awaiting sign-off.</p>
+          <progress value="80" max="100" aria-label="Rentokil Initial reporting status">80%</progress>
+          <p><strong>Tetrosyl</strong> — Data reconciliation in progress.</p>
+          <progress value="62" max="100" aria-label="Tetrosyl reporting status">62%</progress>
+          <p><strong>Tunnocks</strong> — Final report issued.</p>
+          <progress value="100" max="100" aria-label="Tunnocks reporting status">100%</progress>
         </section>
 
-        <section id="reporting" class="panel" aria-labelledby="reporting-title">
-          <h2 id="reporting-title">Reporting Progress</h2>
-          <label for="progress">Monthly report completion</label>
-          <progress id="progress" value="72" max="100">72%</progress>
-          <p class="muted">72% complete • 3 sections pending approvals</p>
+        <section class="card" aria-labelledby="follow-up-actions">
+          <h2 id="follow-up-actions">8) Follow-up actions</h2>
+          <ol>
+            <li>Chase production office for Tetrosyl overdue return confirmation (owner: Logistics, due: 14 May 2026).</li>
+            <li>Issue Rentokil Initial exposure clip pack to client team (owner: Reporting, due: 15 May 2026).</li>
+            <li>Book June planning call with Tunnocks for seasonal schedule alignment (owner: Account Lead, due: 20 May 2026).</li>
+            <li>Validate media valuation assumptions before month-end reporting freeze (owner: Insights, due: 27 May 2026).</li>
+          </ol>
         </section>
       </main>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      (function () {
+        const target = document.getElementById('last-updated');
+        const now = new Date();
+        target.textContent = 'Updated: ' + now.toLocaleString('en-GB', {
+          day: '2-digit', month: 'short', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        }) + ' (local time)';
+      })();
+    </script>
   </body>
 </html>
